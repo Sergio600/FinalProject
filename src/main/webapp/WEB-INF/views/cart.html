@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CART</title>
+    <link rel="stylesheet" data-th-href="@{/css/style.css}" media="all">
+</head>
+<body>
+
+<p class="container">
+<form action="logout" method="post">
+    <nav>
+        <button>logout</button>
+    </nav>
+</form>
+
+<div class="container">
+
+    <div class="header" th:text="'Dear ' + ${user.login} + ' your order is:'"></div>
+
+    <!-- ФОРМА ОТОБРАЖЕНИЯ ВЫБРАННЫХ ПРОДУКТОВ -->
+    <div>
+        <p th:each="pickedProduct: ${selectedProducts}"
+           th:text="${pickedProduct.title} + ' ' + ${pickedProduct.price} + '$'"></p>
+
+    </div>
+
+    <div class="totalPrice" th:text="'Total price is: ' + ${totalPrice}"></div>
+
+    <form method="POST" action="chooseproducts">
+        <input type="submit" value="Edit cart">
+    </form>
+
+</div>
+
+</body>
+</html>

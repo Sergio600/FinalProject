@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose items</title>
+        <link rel="stylesheet" data-th-href="@{/css/style.css}" media="all">
+
+</head>
+<body>
+
+<p class="container">
+<form action="logout" method="post">
+    <nav>
+        <button>logout</button>
+    </nav>
+</form>
+
+<div class="header" th:text="'Hello ' + ${user.login} + ' !'"></div>
+</br>
+<div>Make your order!</div>
+
+<div>
+    <!-- ФОРМА SELECT ВЫБОР ПРОДУКТОВ  -->
+    <form method="post" action="chooseproducts" id="addOrRemove">
+        <select name="selected" size="1">
+            <option th:each="product: ${products}" th:value="${product.id}"
+                    th:text="${product.title} + ' ' + ${product.price} + '$'"></option>
+        </select>
+        <input type="submit" value="Add item"></input>
+    </form>
+
+    <!-- ФОРМА ДЛЯ КНОПОК SUBMIT И EXIT  -->
+    <form method="POST" action="cart">
+        <input type="submit" value="submit"></input>
+    </form>
+
+    <!-- ФОРМА ОТОБРАЖЕНИЯ ВЫБРАННЫХ ПРОДУКТОВ -->
+    <p>You choose products:</p>
+    <div>
+        <div th:each="pickedProduct: ${selectedProducts}">
+            <p th:text="${pickedProduct.title} + ' ' + ${pickedProduct.price} + '$'"></p>
+            <button form="addOrRemove" th:value="${pickedProduct.id}" name="remove">remove</button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
