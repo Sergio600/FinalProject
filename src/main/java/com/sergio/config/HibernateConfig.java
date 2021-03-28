@@ -54,7 +54,6 @@ public class HibernateConfig {
         return dataSource;
     }
 
-
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
@@ -83,8 +82,6 @@ public class HibernateConfig {
                 env.getProperty("hibernate.hbm2ddl.import_files"));
         properties.setProperty("hibernate.hbm2ddl.import_files_sql_extractor",
                 env.getProperty("hibernate.hbm2ddl.import_files_sql_extractor"));
-
         return properties;
     }
-
 }
