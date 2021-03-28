@@ -1,12 +1,13 @@
 package com.sergio.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderDto {
+public class OrderDto implements Serializable {
     private int id;
     private double totalPrice;
     private List<ProductDto> products;
-    private UserDto user;
+    private String userName;
 
     public OrderDto() {
     }
@@ -35,11 +36,11 @@ public class OrderDto {
         this.products = products;
     }
 
-    public UserDto getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

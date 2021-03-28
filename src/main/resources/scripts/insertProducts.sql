@@ -12,3 +12,6 @@
 
   INSERT INTO USER(ID, LOGIN, PASSWORD)
                     VALUES (1, 'Sergio', '100');
+
+  INSERT INTO ORDERS(ID, USER_ID, TOTAL_PRICE)
+                    VALUES (1, 1, 0.0);

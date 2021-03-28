@@ -11,12 +11,13 @@ import org.springframework.stereotype.Component;
 @Lazy
 public class UserConverter {
 
+    @Autowired
     OrderConverter orderConverter;
 
-    @Autowired
-    public UserConverter (OrderConverter orderConverter){
-        this.orderConverter = orderConverter;
-    }
+//    @Autowired
+//    public UserConverter (OrderConverter orderConverter){
+//        this.orderConverter = orderConverter;
+//    }
 
     public User fromDto(UserDto dto) {
         if (dto == null) {

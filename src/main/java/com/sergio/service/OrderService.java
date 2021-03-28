@@ -1,8 +1,10 @@
 package com.sergio.service;
 
+import com.sergio.converter.OrderConverter;
 import com.sergio.domain.Order;
 import com.sergio.domain.Product;
 import com.sergio.domain.User;
+import com.sergio.dto.OrderDto;
 import com.sergio.exception.InvalidArgumentException;
 import com.sergio.repository.OrderRepository;
 import com.sergio.repository.ProductRepository;
@@ -11,12 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
     private OrderRepository orderRepository;
     private UserRepository userRepository;
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderConverter orderConverter;
 
     @Autowired
     public OrderService (OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository){
@@ -84,5 +90,20 @@ public class OrderService {
         } else {
            return user.getOrders().get(0);
         }
+    }
+
+    public OrderDto getOrderById(int id) {
+        if (id == 0) {
+            throw new InvalidArgumentException("Id can't be 0");
+        }
+
+        Order order;
+        Optional<Order> optionalOrder = orderRepository.getById(id);
+        if (optionalOrder.isPresent()) {
+            order = optionalOrder.get();
+        } else {
+            throw new InvalidArgumentException("Order Not Founded!");
+        }
+        return orderConverter.toDto(order);
     }
 }

@@ -1,9 +1,8 @@
 package com.sergio.dto;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public class ProductDto {
+public class ProductDto implements Serializable {
     private int id;
     private String title;
     private double price;

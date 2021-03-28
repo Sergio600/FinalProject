@@ -1,8 +1,9 @@
 package com.sergio.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UserDto {
+public class UserDto implements Serializable {
     private int id;
     private String login;
     private List<OrderDto> orders;
