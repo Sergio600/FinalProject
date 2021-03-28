@@ -1,15 +1,14 @@
 package com.sergio.controller;
 
-import com.sergio.domain.Order;
+import com.sergio.converter.ProductConverter;
 import com.sergio.dto.OrderDto;
 import com.sergio.dto.ProductDto;
-import com.sergio.repository.OrderRepository;
 import com.sergio.service.OrderService;
 import com.sergio.service.ProductService;
-import com.sergio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.List;
@@ -25,6 +24,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductConverter productConverter;
+
 //    @Autowired
 //    public ProductController(OrderService orderService, UserService userService, ProductService productService, OrderRepository orderRepository) {
 //        this.orderService = orderService;
@@ -32,12 +34,12 @@ public class ProductController {
 //    }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<OrderDto> getById(@PathVariable int id) {
-        return ResponseEntity.ok(orderService.getOrderById(id));
+    public ResponseEntity<ProductDto> getById(@PathVariable int id) {
+        return ResponseEntity.ok(productService.getById(id));
     }
 
 
-    @GetMapping(value = "/")
+    @GetMapping()
     public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }

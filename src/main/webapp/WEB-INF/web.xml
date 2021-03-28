@@ -5,10 +5,6 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-  <welcome-file-list>
-    <welcome-file>login</welcome-file>
-  </welcome-file-list>
-
   <error-page>
     <error-code>401</error-code>
     <location>/webapp/WEB-INF/views/error/401.jsp</location>

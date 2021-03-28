@@ -35,7 +35,7 @@ public class OrderRepository {
     }
 
     public Optional<Order> getById(int id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Orders o where o.id = :id");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Order o where o.id = :id");
         query.setParameter("id", id);
 
         Order order = (Order) query.getSingleResult();
